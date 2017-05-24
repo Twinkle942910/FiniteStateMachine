@@ -3,4 +3,8 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="colorArmed">#ff5340</color>
+    <color name="colorDisarmed">#2cc44d</color>
+    <color name="stateTextColor">#ffffff</color>
 </resources>

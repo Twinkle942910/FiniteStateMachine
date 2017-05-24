@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">FiniteStateMachine</string>
+
+    <string name="state_mock">AlarmArmed\nAllLocked</string>
+
+    <string name="button_lock_text">Lock</string>
+    <string name="button_lock_x2_text">Lock_x2</string>
+    <string name="button_unlock_text">Unlock</string>
+    <string name="button_unlock_x2_text">Unlock_x2</string>
 </resources>
