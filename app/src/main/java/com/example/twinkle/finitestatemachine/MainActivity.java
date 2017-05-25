@@ -93,30 +93,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * Check if state is armed or disarmed.
      * @return String content of a state(is it armed/disarmed).
      */
-    //TODO: do refactoring!
     private String checkArmedDisarmed()
     {
-        String current_state_name = finiteStateMachine.getCurrentStateName();
-        String armed_state = "Armed";
-        String inner_word = "";
-        StringBuilder inner_word_chars;
-
-        for(int state_char_position = 0; state_char_position < current_state_name.length(); state_char_position++)
-        {
-            inner_word_chars = new StringBuilder();
-
-            if(state_char_position + armed_state.length() > current_state_name.length())  break;
-
-            for(int inner_word_position = state_char_position; inner_word_position < state_char_position + armed_state.length(); inner_word_position++)
-            {
-                inner_word_chars.append(current_state_name.charAt(inner_word_position));
-            }
-            inner_word = inner_word_chars.toString();
-
-            if(inner_word.equals(armed_state)) return armed_state;
-        }
-
-        return "Disarmed";
+        return finiteStateMachine.getCurrentStateName().contains("Armed") ? "Armed" : "Disarmed";
     }
 
     /**
