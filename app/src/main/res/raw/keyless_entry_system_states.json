@@ -1,0 +1,59 @@
+{
+  "states":
+  [
+
+    {
+    "initial_state" : "AlarmDisarmed_AllUnlocked"
+    },
+
+
+  {
+    "name": "AlarmDisarmed_AllUnlocked",
+    "transition":
+    [
+      {"action": "LOCK", "next_state": "AlarmDisarmed_AllLocked"},
+      {"action": "LOCKx2", "next_state": "AlarmArmed_AllLocked"},
+      {"action": "UNLOCK", "next_state": "AlarmDisarmed_AllUnlocked"},
+      {"action": "UNLOCKx2", "next_state": "AlarmDisarmed_AllUnlocked"}
+    ]
+  },
+
+
+  {
+    "name": "AlarmDisarmed_AllLocked",
+    "transition":
+    [
+      {"action": "LOCK", "next_state": "AlarmArmed_AllLocked"},
+      {"action": "LOCKx2", "next_state": "AlarmArmed_AllLocked"},
+      {"action": "UNLOCK", "next_state": "AlarmDisarmed_DriverUnlocked"},
+      {"action": "UNLOCKx2", "next_state": "AlarmDisarmed_AllUnlocked"}
+    ]
+  },
+
+
+  {
+    "name": "AlarmArmed_AllLocked",
+    "transition":
+    [
+      {"action": "LOCK", "next_state": "AlarmArmed_AllLocked"},
+      {"action": "LOCKx2", "next_state": "AlarmArmed_AllLocked"},
+      {"action": "UNLOCK", "next_state": "AlarmDisarmed_DriverUnlocked"},
+      {"action": "UNLOCKx2", "next_state": "AlarmDisarmed_AllUnlocked"}
+    ]
+  },
+
+
+  {
+    "name": "AlarmDisarmed_DriverUnlocked",
+    "transition":
+    [
+      {"action": "LOCK", "next_state": "AlarmDisarmed_AllLocked"},
+      {"action": "LOCKx2", "next_state": "AlarmArmed_AllLocked"},
+      {"action": "UNLOCK", "next_state": "AlarmDisarmed_DriverUnlocked"},
+      {"action": "UNLOCKx2", "next_state": "AlarmDisarmed_DriverUnlocked"}
+    ]
+  }
+
+  ]
+
+}
