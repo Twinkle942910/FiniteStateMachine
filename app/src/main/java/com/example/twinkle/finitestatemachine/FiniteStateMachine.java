@@ -113,6 +113,63 @@ public class FiniteStateMachine
     }
 
     /**
+     * Makes a machine to call a transition from one state to another by given action.
+     * @param action The action that causes transition to move from one state to another.
+     * @return Nothing.
+     */
+    public void transition(Action action)
+    {
+        //TODO: remove after debug
+        String currentStateName = currentState.getName();
+
+        //If there is some action
+        if (action != null)
+        {
+            //Go through all transitions
+            for (Transition transition : transitions)
+                //And search if there's an action like this
+                if (action.getActionTitle().equals(transition.getAction().getActionTitle()) &&
+                        //Also check for the start state(current state) for this action
+                        currentState.getName().equals(transition.getStartState().getName()))
+                {
+                    //If there is a transition with those parameters the get it's end state(next state).
+                    State nextState = transition.getEndState();
+                    //And go to this state.
+                    setCurrentState(nextState);
+                    break;
+                }
+
+            //TODO: remove after debug
+            Log.i(TAG, "start state: " + currentStateName + " -> action: " + action.getActionTitle() + " -> " + " end state: " + currentState.getName());
+        }
+    }
+
+    /**
+     * Gets an action by position from list.
+     * @param position The action position.
+     * @return Action.
+     */
+    public Action getActionByPosition(int position)
+    {
+        //If given position is in the range of the list
+        if(position >= 0 && position < availableActions.size())
+            //Then return wanted action
+            return availableActions.get(position);
+
+        //or else return null.
+        return null;
+    }
+
+    /**
+     * Gets current state's name.
+     * @return String - current state's name.
+     */
+    public String getCurrentStateName()
+    {
+        return currentState.getName();
+    }
+
+    /**
      * Method adds all unique actions of a state machine.
      * @param action_name name of other action.
      * @return Nothing.
