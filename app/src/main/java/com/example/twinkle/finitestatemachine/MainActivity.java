@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         initTransitionButtons();
         initTransitionButtonListeners();
         setStateOutput();
-        setArmedDisarmedOutput();
     }
 
     @Override
@@ -59,7 +58,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         setStateOutput();
-        setArmedDisarmedOutput();
     }
 
     private void initStateOutput()
@@ -104,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      */
     private String checkArmedDisarmed()
     {
-        return finiteStateMachine.getCurrentStateName().contains("Armed") ? "Armed" : "Disarmed";
+        return finiteStateMachine.getCurrentStateName().contains(getResources().getString(R.string.armed_mock)) ? getResources().getString(R.string.armed_mock) : getResources().getString(R.string.disarmed_mock);
     }
 
     /**
@@ -113,20 +111,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      */
     private int checkArmedDisarmedColor()
     {
-        if(checkArmedDisarmed().equals("Armed")) return ContextCompat.getColor(getApplicationContext(), R.color.colorArmed);
+        if(checkArmedDisarmed().equals(getResources().getString(R.string.armed_mock))) return ContextCompat.getColor(getApplicationContext(), R.color.colorArmed);
         return ContextCompat.getColor(getApplicationContext(), R.color.colorDisarmed);
     }
 
     private void setStateOutput()
     {
-        tvCurrentStateOutput.setText(finiteStateMachine.getCurrentStateName());
-        tvCurrentStateOutput.setBackgroundColor(checkArmedDisarmedColor());
-    }
-
-    private void setArmedDisarmedOutput()
-    {
         tvArmedDisarmed.setText(checkArmedDisarmed());
-        tvArmedDisarmed.setBackgroundColor(checkArmedDisarmedColor());
+        tvCurrentStateOutput.setText(finiteStateMachine.getCurrentStateName());
+        findViewById(R.id.state_layout).setBackgroundColor(checkArmedDisarmedColor());
     }
 
     /**

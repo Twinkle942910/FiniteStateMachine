@@ -7,4 +7,5 @@
     <color name="colorArmed">#ff5340</color>
     <color name="colorDisarmed">#2cc44d</color>
     <color name="stateTextColor">#ffffff</color>
+    <color name="buttonLayoutColor">#e1e1e1</color>
 </resources>

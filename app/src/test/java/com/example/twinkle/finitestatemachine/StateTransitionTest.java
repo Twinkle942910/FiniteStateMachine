@@ -13,8 +13,6 @@ import org.robolectric.annotation.Config;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 /**
  * Created by Twinkle on 5/26/2017.
@@ -31,9 +29,6 @@ public class StateTransitionTest
     private Button bLockX2;
     private Button bUnlock;
     private Button bUnlockX2;
-
-    // create and configure mock
-    private FiniteStateMachine finiteStateMachine = mock(FiniteStateMachine.class);
 
     @Before
     public void setUp() throws Exception
@@ -62,8 +57,7 @@ public class StateTransitionTest
     {
         assertNotNull(tvStateOutput);
         assertEquals(View.VISIBLE, tvStateOutput.getVisibility());
-        when(finiteStateMachine.getCurrentStateName()).thenReturn("AlarmDisarmed_AllUnlocked");
-        assertEquals(finiteStateMachine.getCurrentStateName(), tvStateOutput.getText());
+        assertEquals("AlarmDisarmed_AllUnlocked", tvStateOutput.getText());
 
         assertNotNull(tvArmedDisarmedOutput);
         assertEquals(View.VISIBLE, tvArmedDisarmedOutput.getVisibility());
@@ -81,8 +75,7 @@ public class StateTransitionTest
     {
         assertNotNull(tvStateOutput);
         assertEquals(View.VISIBLE, tvStateOutput.getVisibility());
-        when(finiteStateMachine.getCurrentStateName()).thenReturn("AlarmDisarmed_AllUnlocked");
-        assertEquals(finiteStateMachine.getCurrentStateName(), tvStateOutput.getText());
+        assertEquals("AlarmDisarmed_AllUnlocked", tvStateOutput.getText());
 
         assertNotNull(tvArmedDisarmedOutput);
         assertEquals(View.VISIBLE, tvArmedDisarmedOutput.getVisibility());
@@ -91,33 +84,21 @@ public class StateTransitionTest
         checkIfButtonsNotNull();
 
         bLock.performClick();
-        finiteStateMachine.transition(finiteStateMachine.getActionByPosition(0));
-        when(finiteStateMachine.getCurrentStateName()).thenReturn("AlarmDisarmed_AllLocked");
-        assertEquals(finiteStateMachine.getCurrentStateName(), tvStateOutput.getText());
+        assertEquals("AlarmDisarmed_AllLocked", tvStateOutput.getText());
         assertEquals("Disarmed", tvArmedDisarmedOutput.getText());
 
         bUnlockX2.performClick();
-        finiteStateMachine.transition(finiteStateMachine.getActionByPosition(3));
-
         bLockX2.performClick();
-        finiteStateMachine.transition(finiteStateMachine.getActionByPosition(1));
-        when(finiteStateMachine.getCurrentStateName()).thenReturn("AlarmArmed_AllLocked");
-        assertEquals(finiteStateMachine.getCurrentStateName(), tvStateOutput.getText());
+        assertEquals("AlarmArmed_AllLocked", tvStateOutput.getText());
         assertEquals("Armed", tvArmedDisarmedOutput.getText());
 
         bUnlockX2.performClick();
-        finiteStateMachine.transition(finiteStateMachine.getActionByPosition(3));
-
         bUnlock.performClick();
-        finiteStateMachine.transition(finiteStateMachine.getActionByPosition(2));
-        when(finiteStateMachine.getCurrentStateName()).thenReturn("AlarmDisarmed_AllUnlocked");
-        assertEquals(finiteStateMachine.getCurrentStateName(), tvStateOutput.getText());
+        assertEquals("AlarmDisarmed_AllUnlocked", tvStateOutput.getText());
         assertEquals("Disarmed", tvArmedDisarmedOutput.getText());
 
         bUnlockX2.performClick();
-        finiteStateMachine.transition(finiteStateMachine.getActionByPosition(2));
-        when(finiteStateMachine.getCurrentStateName()).thenReturn("AlarmDisarmed_AllUnlocked");
-        assertEquals(finiteStateMachine.getCurrentStateName(), tvStateOutput.getText());
+        assertEquals("AlarmDisarmed_AllUnlocked", tvStateOutput.getText());
         assertEquals("Disarmed", tvArmedDisarmedOutput.getText());
     }
 
@@ -125,12 +106,10 @@ public class StateTransitionTest
     public void checkAllActionsForAlarmDisarmedAllLockedState() throws Exception
     {
         bLock.performClick();
-        finiteStateMachine.transition(finiteStateMachine.getActionByPosition(0));
 
         assertNotNull(tvStateOutput);
         assertEquals(View.VISIBLE, tvStateOutput.getVisibility());
-        when(finiteStateMachine.getCurrentStateName()).thenReturn("AlarmDisarmed_AllLocked");
-        assertEquals(finiteStateMachine.getCurrentStateName(), tvStateOutput.getText());
+        assertEquals("AlarmDisarmed_AllLocked", tvStateOutput.getText());
 
         assertNotNull(tvArmedDisarmedOutput);
         assertEquals(View.VISIBLE, tvArmedDisarmedOutput.getVisibility());
@@ -139,42 +118,24 @@ public class StateTransitionTest
         checkIfButtonsNotNull();
 
         bLock.performClick();
-        finiteStateMachine.transition(finiteStateMachine.getActionByPosition(0));
-        when(finiteStateMachine.getCurrentStateName()).thenReturn("AlarmArmed_AllLocked");
-        assertEquals(finiteStateMachine.getCurrentStateName(), tvStateOutput.getText());
+        assertEquals("AlarmArmed_AllLocked", tvStateOutput.getText());
         assertEquals("Armed", tvArmedDisarmedOutput.getText());
 
         bUnlockX2.performClick();
-        finiteStateMachine.transition(finiteStateMachine.getActionByPosition(3));
-
         bLock.performClick();
-        finiteStateMachine.transition(finiteStateMachine.getActionByPosition(0));
-
         bLockX2.performClick();
-        finiteStateMachine.transition(finiteStateMachine.getActionByPosition(1));
-        when(finiteStateMachine.getCurrentStateName()).thenReturn("AlarmArmed_AllLocked");
-        assertEquals(finiteStateMachine.getCurrentStateName(), tvStateOutput.getText());
+        assertEquals("AlarmArmed_AllLocked", tvStateOutput.getText());
         assertEquals("Armed", tvArmedDisarmedOutput.getText());
 
         bUnlockX2.performClick();
-        finiteStateMachine.transition(finiteStateMachine.getActionByPosition(3));
-
         bLock.performClick();
-        finiteStateMachine.transition(finiteStateMachine.getActionByPosition(0));
-
         bUnlock.performClick();
-        finiteStateMachine.transition(finiteStateMachine.getActionByPosition(2));
-        when(finiteStateMachine.getCurrentStateName()).thenReturn("AlarmDisarmed_DriverUnlocked");
-        assertEquals(finiteStateMachine.getCurrentStateName(), tvStateOutput.getText());
+        assertEquals("AlarmDisarmed_DriverUnlocked", tvStateOutput.getText());
         assertEquals("Disarmed", tvArmedDisarmedOutput.getText());
 
         bLock.performClick();
-        finiteStateMachine.transition(finiteStateMachine.getActionByPosition(0));
-
         bUnlockX2.performClick();
-        finiteStateMachine.transition(finiteStateMachine.getActionByPosition(2));
-        when(finiteStateMachine.getCurrentStateName()).thenReturn("AlarmDisarmed_AllUnlocked");
-        assertEquals(finiteStateMachine.getCurrentStateName(), tvStateOutput.getText());
+        assertEquals("AlarmDisarmed_AllUnlocked", tvStateOutput.getText());
         assertEquals("Disarmed", tvArmedDisarmedOutput.getText());
     }
 
@@ -182,12 +143,9 @@ public class StateTransitionTest
     public void checkAllActionsForAlarmArmedAllLockedState() throws Exception
     {
         bLockX2.performClick();
-        finiteStateMachine.transition(finiteStateMachine.getActionByPosition(1)); //check if we need this call!
-
         assertNotNull(tvStateOutput);
         assertEquals(View.VISIBLE, tvStateOutput.getVisibility());
-        when(finiteStateMachine.getCurrentStateName()).thenReturn("AlarmArmed_AllLocked");
-        assertEquals(finiteStateMachine.getCurrentStateName(), tvStateOutput.getText());
+        assertEquals("AlarmArmed_AllLocked", tvStateOutput.getText());
 
         assertNotNull(tvArmedDisarmedOutput);
         assertEquals(View.VISIBLE, tvArmedDisarmedOutput.getVisibility());
@@ -196,30 +154,20 @@ public class StateTransitionTest
         checkIfButtonsNotNull();
 
         bLock.performClick();
-        finiteStateMachine.transition(finiteStateMachine.getActionByPosition(0));
-        when(finiteStateMachine.getCurrentStateName()).thenReturn("AlarmArmed_AllLocked");
-        assertEquals(finiteStateMachine.getCurrentStateName(), tvStateOutput.getText());
+        assertEquals("AlarmArmed_AllLocked", tvStateOutput.getText());
         assertEquals("Armed", tvArmedDisarmedOutput.getText());
 
         bLockX2.performClick();
-        finiteStateMachine.transition(finiteStateMachine.getActionByPosition(1));
-        when(finiteStateMachine.getCurrentStateName()).thenReturn("AlarmArmed_AllLocked");
-        assertEquals(finiteStateMachine.getCurrentStateName(), tvStateOutput.getText());
+        assertEquals("AlarmArmed_AllLocked", tvStateOutput.getText());
         assertEquals("Armed", tvArmedDisarmedOutput.getText());
 
         bUnlockX2.performClick();
-        finiteStateMachine.transition(finiteStateMachine.getActionByPosition(3));
-        when(finiteStateMachine.getCurrentStateName()).thenReturn("AlarmDisarmed_AllUnlocked");
-        assertEquals(finiteStateMachine.getCurrentStateName(), tvStateOutput.getText());
+        assertEquals("AlarmDisarmed_AllUnlocked", tvStateOutput.getText());
         assertEquals("Disarmed", tvArmedDisarmedOutput.getText());
 
         bLockX2.performClick();
-        finiteStateMachine.transition(finiteStateMachine.getActionByPosition(1));
-
         bUnlock.performClick();
-        finiteStateMachine.transition(finiteStateMachine.getActionByPosition(2));
-        when(finiteStateMachine.getCurrentStateName()).thenReturn("AlarmDisarmed_DriverUnlocked");
-        assertEquals(finiteStateMachine.getCurrentStateName(), tvStateOutput.getText());
+        assertEquals("AlarmDisarmed_DriverUnlocked", tvStateOutput.getText());
         assertEquals("Disarmed", tvArmedDisarmedOutput.getText());
     }
 
@@ -227,14 +175,11 @@ public class StateTransitionTest
     public void checkAllActionsForAlarmDisarmedDriverUnlockedState() throws Exception
     {
         bLockX2.performClick();
-        finiteStateMachine.transition(finiteStateMachine.getActionByPosition(1)); //check if we need this call!
         bUnlock.performClick();
-        finiteStateMachine.transition(finiteStateMachine.getActionByPosition(2));
 
         assertNotNull(tvStateOutput);
         assertEquals(View.VISIBLE, tvStateOutput.getVisibility());
-        when(finiteStateMachine.getCurrentStateName()).thenReturn("AlarmDisarmed_DriverUnlocked");
-        assertEquals(finiteStateMachine.getCurrentStateName(), tvStateOutput.getText());
+        assertEquals("AlarmDisarmed_DriverUnlocked", tvStateOutput.getText());
 
         assertNotNull(tvArmedDisarmedOutput);
         assertEquals(View.VISIBLE, tvArmedDisarmedOutput.getVisibility());
@@ -243,30 +188,20 @@ public class StateTransitionTest
         checkIfButtonsNotNull();
 
         bUnlock.performClick();
-        finiteStateMachine.transition(finiteStateMachine.getActionByPosition(2));
-        when(finiteStateMachine.getCurrentStateName()).thenReturn("AlarmDisarmed_DriverUnlocked");
-        assertEquals(finiteStateMachine.getCurrentStateName(), tvStateOutput.getText());
+        assertEquals("AlarmDisarmed_DriverUnlocked", tvStateOutput.getText());
         assertEquals("Disarmed", tvArmedDisarmedOutput.getText());
 
         bUnlockX2.performClick();
-        finiteStateMachine.transition(finiteStateMachine.getActionByPosition(3));
-        when(finiteStateMachine.getCurrentStateName()).thenReturn("AlarmDisarmed_DriverUnlocked");
-        assertEquals(finiteStateMachine.getCurrentStateName(), tvStateOutput.getText());
+        assertEquals("AlarmDisarmed_DriverUnlocked", tvStateOutput.getText());
         assertEquals("Disarmed", tvArmedDisarmedOutput.getText());
 
         bLockX2.performClick();
-        finiteStateMachine.transition(finiteStateMachine.getActionByPosition(1));
-        when(finiteStateMachine.getCurrentStateName()).thenReturn("AlarmArmed_AllLocked");
-        assertEquals(finiteStateMachine.getCurrentStateName(), tvStateOutput.getText());
+        assertEquals("AlarmArmed_AllLocked", tvStateOutput.getText());
         assertEquals("Armed", tvArmedDisarmedOutput.getText());
 
         bUnlock.performClick();
-        finiteStateMachine.transition(finiteStateMachine.getActionByPosition(2));
-
         bLock.performClick();
-        finiteStateMachine.transition(finiteStateMachine.getActionByPosition(0));
-        when(finiteStateMachine.getCurrentStateName()).thenReturn("AlarmDisarmed_AllLocked");
-        assertEquals(finiteStateMachine.getCurrentStateName(), tvStateOutput.getText());
+        assertEquals("AlarmDisarmed_AllLocked", tvStateOutput.getText());
         assertEquals("Disarmed", tvArmedDisarmedOutput.getText());
     }
 
