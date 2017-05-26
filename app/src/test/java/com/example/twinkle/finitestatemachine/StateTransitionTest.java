@@ -15,21 +15,51 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 /**
- * Created by Twinkle on 5/26/2017.
+ * Checks if all possible state transitions in application are correct.
  */
 
 @RunWith(RobolectricTestRunner.class)
 @Config(constants = BuildConfig.class)
 public class StateTransitionTest
 {
+    /**
+     * The main activity of application.
+     */
     private MainActivity activity;
+
+    /**
+     * View that outputs machine's current state.
+     */
     private TextView tvStateOutput;
+
+    /**
+     * View that outputs if machine's current state is armed or disarmed.
+     */
     private TextView tvArmedDisarmedOutput;
+
+    /**
+     * Button that calls machine's transition by `LOCK` action.
+     */
     private Button bLock;
+
+    /**
+     * Button that calls machine's transition by `LOCKx2` action.
+     */
     private Button bLockX2;
+
+    /**
+     * Button that calls machine's transition by `UNLOCK` action.
+     */
     private Button bUnlock;
+
+    /**
+     * Button that calls machine's transition by `UNLOCKx2` action.
+     */
     private Button bUnlockX2;
 
+    /**
+     * Initializes all components needed for testing.
+     */
     @Before
     public void setUp() throws Exception
     {
@@ -46,12 +76,18 @@ public class StateTransitionTest
         bUnlockX2 = (Button) activity.findViewById(R.id.unlockx2_action_button);
     }
 
+    /**
+     * Checks if activity is not null.
+     */
     @Test
     public void shouldNotBeNull() throws Exception
     {
         assertNotNull(activity);
     }
 
+    /**
+     * Checks the initial state of machine.
+     */
     @Test
     public void shouldHaveStateOutput() throws Exception
     {
@@ -64,12 +100,18 @@ public class StateTransitionTest
         assertEquals("Disarmed", tvArmedDisarmedOutput.getText());
     }
 
+    /**
+     * Checks if all buttons are on their places.
+     */
     @Test
     public void shouldHaveActionButtons() throws Exception
     {
         checkIfButtonsNotNull();
     }
 
+    /**
+     * Checks all transitions from AlarmDisarmedAllUnlocked state.
+     */
     @Test
     public void checkAllActionsForAlarmDisarmedAllUnlockedState() throws Exception
     {
@@ -102,6 +144,9 @@ public class StateTransitionTest
         assertEquals("Disarmed", tvArmedDisarmedOutput.getText());
     }
 
+    /**
+     * Checks all transitions from AlarmDisarmedAllLocked state.
+     */
     @Test
     public void checkAllActionsForAlarmDisarmedAllLockedState() throws Exception
     {
@@ -139,6 +184,9 @@ public class StateTransitionTest
         assertEquals("Disarmed", tvArmedDisarmedOutput.getText());
     }
 
+    /**
+     * Checks all transitions from AlarmArmedAllLocked state.
+     */
     @Test
     public void checkAllActionsForAlarmArmedAllLockedState() throws Exception
     {
@@ -171,6 +219,9 @@ public class StateTransitionTest
         assertEquals("Disarmed", tvArmedDisarmedOutput.getText());
     }
 
+    /**
+     * Checks all transitions from AlarmDisarmedDriverUnlocked state.
+     */
     @Test
     public void checkAllActionsForAlarmDisarmedDriverUnlockedState() throws Exception
     {
@@ -205,7 +256,10 @@ public class StateTransitionTest
         assertEquals("Disarmed", tvArmedDisarmedOutput.getText());
     }
 
-    private void checkIfButtonsNotNull()
+    /**
+     * Checks if all buttons have been initialized.
+     */
+    private void checkIfButtonsNotNull() throws Exception
     {
         assertNotNull(bLock);
         assertEquals(View.VISIBLE, bLock.getVisibility());

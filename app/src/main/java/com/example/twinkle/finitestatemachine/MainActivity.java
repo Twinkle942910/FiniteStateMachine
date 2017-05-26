@@ -88,7 +88,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     /**
      * Initializes a machine and read state information from file.
-     * @return Nothing.
      */
     private void initStateMachine()
     {
@@ -102,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      */
     private String checkArmedDisarmed()
     {
-        return finiteStateMachine.getCurrentStateName().contains(getResources().getString(R.string.armed_mock)) ? getResources().getString(R.string.armed_mock) : getResources().getString(R.string.disarmed_mock);
+        return finiteStateMachine.getCurrentStateName().contains("Armed") ? "Armed" : "Disarmed";
     }
 
     /**
@@ -111,7 +110,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      */
     private int checkArmedDisarmedColor()
     {
-        if(checkArmedDisarmed().equals(getResources().getString(R.string.armed_mock))) return ContextCompat.getColor(getApplicationContext(), R.color.colorArmed);
+        if(checkArmedDisarmed().equals("Armed")) return ContextCompat.getColor(getApplicationContext(), R.color.colorArmed);
         return ContextCompat.getColor(getApplicationContext(), R.color.colorDisarmed);
     }
 

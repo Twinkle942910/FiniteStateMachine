@@ -12,22 +12,34 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 /**
- * Created by Twinkle on 5/26/2017.
+ * Test for FiniteStateMachine class.
  */
 
 public class FiniteStateMachineTest
 {
+    /**
+     * FiniteStateMachine reference.
+     */
     private static FiniteStateMachine finiteStateMachine;
 
+    /**
+     * Actions of machine.
+     */
     private static Action actionLock;
     private static Action actionLockX2;
     private static Action actionUnlock;
     private static Action actionUnlockX2;
 
+    /**
+     * Mock file name.
+     */
     private static final String fileName = "mockFile.json";
 
+    /**
+     * Initializing mock of the machine. Creating mock methods.
+     */
     @BeforeClass
-    public static void setUp()
+    public static void setUp() throws Exception
     {
         // Creating and configuring mock
         finiteStateMachine = mock(FiniteStateMachine.class);
@@ -47,22 +59,31 @@ public class FiniteStateMachineTest
         finiteStateMachine.initialize(fileName);
     }
 
+    /**
+     * Check if file with states was created, initialized and read.
+     */
     @Test
-    public void testIfFileIsInitialized()
+    public void testIfFileIsInitialized() throws Exception
     {
         verify(finiteStateMachine, times(1)).initialize(fileName);
     }
 
+    /**
+     * Checks the initial state of the machine.
+     */
     @Test
-    public void testCheckCurrentState()
+    public void testCheckCurrentState() throws Exception
     {
         String currentState = finiteStateMachine.getCurrentStateName();
         assertNotNull(currentState);
         assertEquals("AlarmDisarmed_AllUnlocked", currentState);
     }
 
+    /**
+     * Checks getting of each action.
+     */
     @Test
-    public void testCheckActions()
+    public void testCheckActions() throws Exception
     {
         Action action1 = finiteStateMachine.getActionByPosition(0);
         assertNotNull(action1);
@@ -81,9 +102,11 @@ public class FiniteStateMachineTest
         assertEquals("UNLOCKx2", actionUnlockX2.getActionTitle());
     }
 
-
+    /**
+     * Checks the call of the machine's transition.
+     */
     @Test
-    public void testReturnNextStateByTransition()
+    public void testReturnNextStateByTransition() throws Exception
     {
         Action action = finiteStateMachine.getActionByPosition(0);
         assertNotNull(action);

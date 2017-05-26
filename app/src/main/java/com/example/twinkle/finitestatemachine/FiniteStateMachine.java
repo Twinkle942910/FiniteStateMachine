@@ -40,7 +40,6 @@ public class FiniteStateMachine
      * The initialization method that gets state machine data from json file
      * and initializes transitions, actions, state with them.
      * @param states_object The json file with description of a state machine.
-     * @return Nothing.
      */
     public void initialize(String states_object)
     {
@@ -115,7 +114,6 @@ public class FiniteStateMachine
     /**
      * Makes a machine to call a transition from one state to another by given action.
      * @param action The action that causes transition to move from one state to another.
-     * @return Nothing.
      */
     public void transition(Action action)
     {
@@ -172,7 +170,6 @@ public class FiniteStateMachine
     /**
      * Method adds all unique actions of a state machine.
      * @param action_name name of other action.
-     * @return Nothing.
      */
     private void addUniqueAction(String action_name)
     {
@@ -199,7 +196,6 @@ public class FiniteStateMachine
     /**
      * Sets given state to the current.
      * @param initialState given state.
-     * @return Nothing.
      */
     private void setCurrentState(State initialState)
     {
