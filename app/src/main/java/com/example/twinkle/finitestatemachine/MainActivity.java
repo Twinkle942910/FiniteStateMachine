@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.twinkle.finitestatemachine.machine.FiniteStateMachine;
+
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -129,11 +131,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     {
         String json = null;
         try {
-            InputStream is = getResources().openRawResource(R.raw.keyless_entry_system_states);
-            int size = is.available();
+            InputStream inputStream = getResources().openRawResource(R.raw.keyless_entry_system_states);
+            int size = inputStream.available();
             byte[] buffer = new byte[size];
-            is.read(buffer);
-            is.close();
+            inputStream.read(buffer);
+            inputStream.close();
             json = new String(buffer, "UTF-8");
         } catch (IOException ex) {
             ex.printStackTrace();

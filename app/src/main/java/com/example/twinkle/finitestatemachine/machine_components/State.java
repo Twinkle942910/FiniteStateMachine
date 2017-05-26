@@ -1,4 +1,4 @@
-package com.example.twinkle.finitestatemachine;
+package com.example.twinkle.finitestatemachine.machine_components;
 
 /**
  * Description of a common state.

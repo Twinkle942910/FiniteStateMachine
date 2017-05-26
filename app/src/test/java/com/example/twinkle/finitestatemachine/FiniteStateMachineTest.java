@@ -1,5 +1,8 @@
 package com.example.twinkle.finitestatemachine;
 
+import com.example.twinkle.finitestatemachine.machine.FiniteStateMachine;
+import com.example.twinkle.finitestatemachine.machine_components.Action;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 

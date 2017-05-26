@@ -1,6 +1,10 @@
-package com.example.twinkle.finitestatemachine;
+package com.example.twinkle.finitestatemachine.machine;
 
 import android.util.Log;
+
+import com.example.twinkle.finitestatemachine.machine_components.Action;
+import com.example.twinkle.finitestatemachine.machine_components.State;
+import com.example.twinkle.finitestatemachine.machine_components.Transition;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,21 +43,21 @@ public class FiniteStateMachine
     /**
      * The initialization method that gets state machine data from json file
      * and initializes transitions, actions, state with them.
-     * @param states_object The json file with description of a state machine.
+     * @param statesObject The json file with description of a state machine.
      */
-    public void initialize(String states_object)
+    public void initialize(String statesObject)
     {
         //initialize transitions and actions
         transitions =  new ArrayList<>();
         availableActions = new ArrayList<>();
 
         //if we have an json file with states
-        if (states_object != null)
+        if (statesObject != null)
         {
             try
             {
                 //We're trying to open it
-                JSONObject jsonObject = new JSONObject(states_object);
+                JSONObject jsonObject = new JSONObject(statesObject);
 
                 //Then we are getting a JSON array node
                 JSONArray statesJSON = jsonObject.getJSONArray("states");
@@ -169,9 +173,9 @@ public class FiniteStateMachine
 
     /**
      * Method adds all unique actions of a state machine.
-     * @param action_name name of other action.
+     * @param actionName name of other action.
      */
-    private void addUniqueAction(String action_name)
+    private void addUniqueAction(String actionName)
     {
         //Flag-variable for checking if given action is already in the list.
         boolean isHere = false;
@@ -180,7 +184,7 @@ public class FiniteStateMachine
         for(Action action : availableActions)
         {
             //If the action is already here
-            if (action.getActionTitle().equals(action_name))
+            if (action.getActionTitle().equals(actionName))
             {
                 //Set flag that it's here.
                 isHere = true;
@@ -190,7 +194,7 @@ public class FiniteStateMachine
         }
 
         //if there's no action like that then add it to the list.
-        if (!isHere) availableActions.add(new Action(action_name));
+        if (!isHere) availableActions.add(new Action(actionName));
     }
 
     /**

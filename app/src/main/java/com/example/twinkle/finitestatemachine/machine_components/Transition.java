@@ -1,10 +1,10 @@
-package com.example.twinkle.finitestatemachine;
+package com.example.twinkle.finitestatemachine.machine_components;
 
 /**
  * The transition between state. Moves from one state to another by given action.
  */
 
-class Transition
+public class Transition
 {
     /**
      * The state in which is machine at the moment.
