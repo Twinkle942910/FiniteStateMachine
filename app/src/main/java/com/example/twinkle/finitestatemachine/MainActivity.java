@@ -13,6 +13,7 @@ import java.io.InputStream;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener
 {
     private FiniteStateMachine finiteStateMachine;
+    private TextView tvArmedDisarmed;
     private TextView tvCurrentStateOutput;
     private Button bLock;
     private Button bLockX2;
@@ -28,9 +29,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         initStateMachine();
 
         initStateOutput();
+        initArmedDisarmedOutput();
         initTransitionButtons();
         initTransitionButtonListeners();
         setStateOutput();
+        setArmedDisarmedOutput();
     }
 
     @Override
@@ -56,11 +59,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         setStateOutput();
+        setArmedDisarmedOutput();
     }
 
     private void initStateOutput()
     {
         tvCurrentStateOutput = (TextView) findViewById(R.id.current_state);
+    }
+
+    private void initArmedDisarmedOutput()
+    {
+        tvArmedDisarmed = (TextView) findViewById(R.id.armed_or_not);
     }
 
     private void initTransitionButtons()
@@ -110,8 +119,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void setStateOutput()
     {
-        tvCurrentStateOutput.setText(checkArmedDisarmed() + "\n\n" + finiteStateMachine.getCurrentStateName());
+        tvCurrentStateOutput.setText(finiteStateMachine.getCurrentStateName());
         tvCurrentStateOutput.setBackgroundColor(checkArmedDisarmedColor());
+    }
+
+    private void setArmedDisarmedOutput()
+    {
+        tvArmedDisarmed.setText(checkArmedDisarmed());
+        tvArmedDisarmed.setBackgroundColor(checkArmedDisarmedColor());
     }
 
     /**

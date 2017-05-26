@@ -2,6 +2,8 @@
     <string name="app_name">FiniteStateMachine</string>
 
     <string name="state_mock">AlarmArmed\nAllLocked</string>
+    <string name="armed_mock">Armed</string>
+    <string name="disarmed_mock">Disarmed</string>
 
     <string name="button_lock_text">Lock</string>
     <string name="button_lock_x2_text">Lock_x2</string>
