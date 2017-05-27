@@ -26,7 +26,7 @@ The `JSON` file must have an array of `states`. Each `state` is presented as:
   ```
   It has a name, and array of `transitions`. Transitions contain an `action` and a `next state`. 
 
-Also there have to be an `initial state`. The state from which the machine starts. It is described like this:
+Also there has to be an `initial state`. The state from which the machine starts. It is described like this:
 
 ```json
     {
